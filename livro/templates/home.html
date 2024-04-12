@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 
-
 {% block 'conteudo' %}
 
-<div class="container">
-  
+{% regroup livros by categoria as categorias_list %}
+
+<div class="container text-center">
+
+    <h1>Acervo de Partituras</h1>
+<!--
+      <div class="row">
+        {% regroup livros by categoria as categorias_list %}
+
+        {% for categoria in categorias_list %}
+            <h3>{{ categoria.grouper }}</h3>
+        {% endfor %}
+    </div>
+
+  </div>
+ -->   
     <br>
+
     {% if status_categoria == '1' %}
       <div class="alert alert-success" role="alert">
         Categoria cadastrada com sucesso
@@ -17,11 +31,17 @@
       
         {% for livro in livros %}
             <div class="col-md">
+
                 <div class="card" style="width: 18rem;">
+                 
                     <div class="card-body">
 
-                      <h5 class="card-title">{{livro.nome}}</h5>
-                     
+                      <h5 class="card-title">{{ livro.obra}}</h5>
+                      <p class="card-text"><strong>Categoria:</strong> {{ livro.categoria }}</p>
+                      <p class="card-text"><strong>Classificação:</strong> {{ livro.classificacao }}</p>
+                      <p class="card-text"><strong>Localização:</strong> {{ livro.localizacao }}</p>
+                      <p class="card-text"><strong>Número de exemplares:</strong> {{ livro.exemplares_disponiveis }}</p>
+                      <p class="card-text"><strong>Formato:</strong> {{ livro.formato }}</p>
                      
                       <h6 style="display: inline;" class="card-subtitle mb-2 text-muted">Emprestado</h6>
                       

@@ -9,7 +9,7 @@ from datetime import date
 class CadastroLivro(forms.ModelForm):
     class Meta:
         model = Livros
-        fields = "__all__"
+        fields = ['categoria','compositor', 'arranjador', 'obra', 'classificacao', 'conteudo', 'edicao', 'edicao', 'observacao', 'data_cadastro', 'emprestado', 'localizacao', 'exemplares_disponiveis', 'categoria', 'formato', 'usuario']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
