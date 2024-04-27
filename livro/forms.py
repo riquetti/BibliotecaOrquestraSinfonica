@@ -1,9 +1,12 @@
-from usuarios.models import Usuario
-from django import forms
-from django.db.models import fields
-from .models import Livros, Categoria
-from django.db import models    
 from datetime import date
+
+from django import forms
+from django.db import models
+from django.db.models import fields
+
+from usuarios.models import Usuario
+
+from .models import Categoria, Livros
 
 
 class CadastroLivro(forms.ModelForm):

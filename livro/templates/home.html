@@ -1,25 +1,59 @@
 {% extends 'base.html' %}
 
-{% block 'conteudo' %}
 
-{% regroup livros by categoria as categorias_list %}
+{% block 'conteudo' %}
 
 <div class="container text-center">
 
-    <h1>Acervo de Partituras</h1>
-<!--
-      <div class="row">
-        {% regroup livros by categoria as categorias_list %}
+  <h1>Acervo de Partituras</h1>
 
-        {% for categoria in categorias_list %}
-            <h3>{{ categoria.grouper }}</h3>
-        {% endfor %}
-    </div>
+  <!-- Filtro -->
+<form action="" method="GET" class="form-inline mb-2 ml-auto">
+  <label for="categoria" class="mr-2">Filtrar por Categoria:</label>
+  <select name="categoria" id="categoria" class="form-control mr-2">
+      <option value="">Todas as categorias</option>
+      {% for categoria in categorias %}
+      <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+      {% endfor %}
+  </select>
 
-  </div>
- -->   
+  <label for="obra" class="mr-2"> Obra:</label>
+  <select name="obra" id="obra" class="form-control mr-2">
+      <option value="">Todas as obras</option>
+      {% for obra in obras %}
+      <option value="{{ obra }}">{{ obra }}</option>
+      {% endfor %}
+  </select>
+
+  <label for="classificacao" class="mr-2"> Classificação:</label>
+  <select name="classificacao" id="classificacao" class="form-control mr-2">
+      <option value="">Todas as classificações</option>
+      {% for classificacao in classificacoes %}
+      <option value="{{ classificacao }}">{{ classificacao }}</option>
+      {% endfor %}
+  </select>
+
+  <label for="compositor" class="mr-2"> Compositor:</label>
+  <select name="compositor" id="compositor" class="form-control mr-2">
+      <option value="">Todos os compositores</option>
+      {% for compositor in compositores %}
+      <option value="{{ compositor }}">{{ compositor }}</option>
+      {% endfor %}
+  </select>
+
+  <label for="arranjador" class="mr-2"> Arranjador:</label>
+  <select name="arranjador" id="arranjador" class="form-control mr-2">
+      <option value="">Todos os arranjadores</option>
+      {% for arranjador in arranjadores %}
+      <option value="{{ arranjador }}">{{ arranjador }}</option>
+      {% endfor %}
+  </select>
+
+  <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
+    <!-- FIM Filtro -->
     <br>
-
     {% if status_categoria == '1' %}
       <div class="alert alert-success" role="alert">
         Categoria cadastrada com sucesso
@@ -31,9 +65,7 @@
       
         {% for livro in livros %}
             <div class="col-md">
-
                 <div class="card" style="width: 18rem;">
-                 
                     <div class="card-body">
 
                       <h5 class="card-title">{{ livro.obra}}</h5>
@@ -41,7 +73,8 @@
                       <p class="card-text"><strong>Classificação:</strong> {{ livro.classificacao }}</p>
                       <p class="card-text"><strong>Localização:</strong> {{ livro.localizacao }}</p>
                       <p class="card-text"><strong>Número de exemplares:</strong> {{ livro.exemplares_disponiveis }}</p>
-                      <p class="card-text"><strong>Formato:</strong> {{ livro.formato }}</p>
+                      <p class="card-text"><strong>Formato:</strong> {{ livro.formato }}</p>
+                     
                      
                       <h6 style="display: inline;" class="card-subtitle mb-2 text-muted">Emprestado</h6>
                       
